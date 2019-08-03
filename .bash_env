@@ -1,0 +1,21 @@
+if [[ -v "BASH_ENV_LOADED_LOCAL" ]]; then
+    return 0
+fi
+export BASH_ENV_LOADED_LOCAL=t
+
+. $HOME/.bash_env_nobiruwa
+
+# maven directory configuration
+MAVEN_HOME=$HOME/opt/apache-maven-3.6.1
+MAVENBIN=$MAVEN_HOME/bin
+if [ -d $MAVENBIN ] ; then
+    export PATH="$MAVENBIN:$PATH"
+fi
+
+# gradle directory configuration
+GRADLE_HOME=$HOME/opt/gradle-5.5.1
+GRADLEBIN=$GRADLE_HOME/bin
+if [ -d $GRADLEBIN ] ; then
+    export PATH="$GRADLEBIN:$PATH"
+fi
+
