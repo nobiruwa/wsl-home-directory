@@ -19,3 +19,7 @@ if [ -d "$GRADLE_BIN" ] ; then
     export PATH="$GRADLE_BIN:$PATH"
 fi
 
+
+# Local Variables:
+# mode: shell-script
+# End:
