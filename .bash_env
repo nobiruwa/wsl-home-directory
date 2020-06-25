@@ -19,6 +19,8 @@ if [ -d "$GRADLE_BIN" ] ; then
     export PATH="$GRADLE_BIN:$PATH"
 fi
 
+# X configuration
+export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0.0
 
 # Local Variables:
 # mode: shell-script
