@@ -22,6 +22,13 @@ fi
 # X configuration
 export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0.0
 
+# Cygwin X Server authentication
+CYGWIN_HOME="/mnt/c/cygwin64$HOME"
+CYGWIN_XAUTHORITY="$CYGWIN_HOME/.Xauthority"
+if [ -f "$CYGWIN_XAUTHORITY" ] ; then
+    cp "$CYGWIN_XAUTHORITY" $HOME/
+fi
+
 # Local Variables:
 # mode: shell-script
 # End:
