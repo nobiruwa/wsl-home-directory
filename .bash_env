@@ -5,20 +5,6 @@ export BASH_ENV_LOADED_LOCAL=t
 
 . "$HOME/.bash_env_nobiruwa"
 
-# maven directory configuration
-MAVEN_HOME="$HOME/opt/apache-maven"
-MAVEN_BIN="$MAVEN_HOME/bin"
-if [ -d "$MAVEN_BIN" ] ; then
-    export PATH="$MAVEN_BIN:$PATH"
-fi
-
-# gradle directory configuration
-GRADLE_HOME="$HOME/opt/gradle"
-GRADLE_BIN="$GRADLE_HOME/bin"
-if [ -d "$GRADLE_BIN" ] ; then
-    export PATH="$GRADLE_BIN:$PATH"
-fi
-
 # X configuration
 export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0.0
 
