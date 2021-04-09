@@ -5,14 +5,14 @@ export BASH_ENV_LOADED_LOCAL=t
 
 . "$HOME/.bash_env_nobiruwa"
 
-# X configuration
-export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0.0
-
 # Cygwin X Server authentication (requires cygwin's "xhost" package)
 CYGWIN_ROOT="/mnt/c/cygwin64"
 CYGWIN_XHOST="$CYGWIN_ROOT/bin/xhost.exe"
 IP_ADDR=`ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1`
 if [ -f "$CYGWIN_XHOST" ] ; then
+    # X configuration
+    export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0.0
+
     # On Windows, set DISPLAY=:0.0
     ${CYGWIN_XHOST} +${IP_ADDR}
 fi
