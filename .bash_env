@@ -5,6 +5,11 @@ export BASH_ENV_LOADED_LOCAL=t
 
 . "$HOME/.bash_env_nobiruwa"
 
+# Avoid the following error:
+# libGL error: No matching fbConfigs or visuals found
+# libGL error: failed to load driver: swrast
+export LIBGL_ALWAYS_INDIRECT=1
+
 # Cygwin X Server authentication (requires cygwin's "xhost" package)
 CYGWIN_ROOT="/mnt/c/cygwin64"
 CYGWIN_XHOST="$CYGWIN_ROOT/bin/xhost.exe"
