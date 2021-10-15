@@ -1,7 +1,7 @@
 if [[ -v "BASH_ENV_LOADED_WSL" ]]; then
     return 0
 fi
-export BASH_ENV_LOADED_LOCAL_WSL=t
+export BASH_ENV_LOADED_WSL=t
 
 . "$HOME/.bash_env_nobiruwa"
 
