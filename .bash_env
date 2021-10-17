@@ -5,20 +5,20 @@ export BASH_ENV_LOADED_WSL=t
 
 . "$HOME/.bash_env_nobiruwa"
 
-# Avoid the following error:
-# libGL error: No matching fbConfigs or visuals found
-# libGL error: failed to load driver: swrast
-export LIBGL_ALWAYS_INDIRECT=1
-
 # Cygwin X Server authentication (requires cygwin's "xhost" package)
 CYGWIN_ROOT="/mnt/c/cygwin64"
 CYGWIN_XHOST="$CYGWIN_ROOT/bin/xhost.exe"
-IP_ADDR=`ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1`
 if [ -f "$CYGWIN_XHOST" ] ; then
     # X configuration
     export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0.0
+    # Avoid the following error:
+    # libGL error: No matching fbConfigs or visuals found
+    # libGL error: failed to load driver: swrast
+    # https://x.cygwin.com/docs/ug/using-glx.html
+    export LIBGL_ALWAYS_INDIRECT=1
 
     # On Windows, set DISPLAY=:0.0
+    IP_ADDR=`ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1`
     ${CYGWIN_XHOST} +${IP_ADDR}
 fi
 
