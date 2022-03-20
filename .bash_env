@@ -8,7 +8,7 @@ export BASH_ENV_LOADED_WSL=t
 # Cygwin X Server authentication (requires cygwin's "xhost" package)
 CYGWIN_ROOT="/mnt/c/cygwin64"
 CYGWIN_XHOST="$CYGWIN_ROOT/bin/xhost.exe"
-if [ -f "$CYGWIN_XHOST" ] ; then
+if [ -f "$CYGWIN_XHOST" ]; then
     # X configuration
     export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0.0
     # Avoid the following error:
