@@ -5,10 +5,8 @@ export BASH_ENV_LOADED_WSL=t
 
 . "$HOME/.bash_env_nobiruwa"
 
-# Cygwin X Server authentication (requires cygwin's "xhost" package)
-CYGWIN_ROOT="/mnt/c/cygwin64"
-CYGWIN_XHOST="$CYGWIN_ROOT/bin/xhost.exe"
-if [ -f "$CYGWIN_XHOST" ]; then
+# X Server configuration (cygwin/vcxsrv/wslg/otherwise)
+if [[ $WSL_DISPLAY = "cygwin" || $WSL_DISPLAY = "vcxsrv" ]]; then
     # X configuration
     export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0.0
     # Avoid the following error:
@@ -16,10 +14,18 @@ if [ -f "$CYGWIN_XHOST" ]; then
     # libGL error: failed to load driver: swrast
     # https://x.cygwin.com/docs/ug/using-glx.html
     export LIBGL_ALWAYS_INDIRECT=1
-
     # On Windows, set DISPLAY=:0.0
     IP_ADDR=`ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1`
-    ${CYGWIN_XHOST} +${IP_ADDR}
+
+    # Cygwin/X configuration
+    if [ $WSL_DISPLAY = "cygwin" ]; then
+        # Cygwin X Server authentication (requires cygwin's "xhost" package)
+        CYGWIN_ROOT="/mnt/c/cygwin64"
+        CYGWIN_XHOST="$CYGWIN_ROOT/bin/xhost.exe"
+        if [ -f "$CYGWIN_XHOST" ]; then
+            ${CYGWIN_XHOST} +${IP_ADDR}
+        fi
+    fi
 fi
 
 # Local Variables:
